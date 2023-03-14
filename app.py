@@ -5,8 +5,6 @@ from langchain.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
 import sys
 
-uploaded_file = st.file_uploader("CSVファイルをアップロードしてください")
-
 
 class Logger():
     stdout = sys.stdout
@@ -24,7 +22,10 @@ class Logger():
 
 log = Logger()
 
-if uploaded_file is not None:
+uploaded_file = st.file_uploader("CSVファイルをアップロードしてください")
+if uploaded_file:
+    st.success('Upload Success!')
+
     df = pd.read_csv(uploaded_file)
     st.write('### 読み込んだデータ')
     st.dataframe(df)
